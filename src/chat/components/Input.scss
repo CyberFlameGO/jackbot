@@ -1,0 +1,28 @@
+@import 'global';
+
+.Input {
+  @include position(absolute, null 0 0 $sidebar-width);
+  padding: 0;
+  background: rgba(0, 0, 0, .2);
+  padding: 15px;
+  background: $red;
+
+  input {
+    @extend %base-input;
+    color: $white;
+    border: 0;
+    width: 100%;
+    font-size: 18px;
+    background: rgba(0, 0, 0, .1);
+    padding: 0 15px;
+    border-radius: 100px;
+
+    &::placeholder { color: lighten($red, 10%); }
+  }
+
+  @include max-width(mobile) {
+    left: 0;
+
+    input { padding: 10px; }
+  }
+}

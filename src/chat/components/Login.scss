@@ -1,0 +1,36 @@
+@import 'global';
+
+.Login {
+  @include clearfix;
+  @include position(fixed, 50% 0 null 0);
+  transform: translateY(-50%);
+
+  .container {
+    width: 280px;
+    margin: 0 auto;
+
+    @include min-width(mobile) {
+      width: 600px;
+    }
+  }
+
+  h1 {
+    @extend %heading;
+    @include scale(font-size 18px 28px);
+    margin: 0;
+  }
+
+  $button-width: 80px;
+
+  input {
+    @extend %base-input;
+    width: calc(100% - #{$button-width});
+    float: left;
+  }
+
+  button {
+    @include button;
+    width: $button-width;
+    float: right;
+  }
+} 

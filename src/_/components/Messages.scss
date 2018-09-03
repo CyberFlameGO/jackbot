@@ -1,0 +1,74 @@
+@import '../sass/import';
+
+.Messages {
+  @include position(absolute, 0 0 68px $sidebar-width);
+  overflow: hidden;
+  margin: 0;
+  background: $white; 
+  user-select: none;
+
+  @include max-width(mobile) {
+    left: 0;
+    bottom: 50px; 
+  }
+
+  &:before {
+    @include position(absolute, 0 0 0 0);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    content: '';
+    z-index: 100; 
+  }
+
+  &:after {
+    @include position(absolute, 0 0 0 0);
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    content: '';
+    z-index: 100; 
+  }
+  
+  ul {
+    @include position(absolute, null 0 0 0);
+    transition: transform .3s $base-easing;
+    padding: 0;
+  }
+
+  $timestamp-width: 80px;
+
+  li {
+    @include padding(10px 5px 10px $timestamp-width);
+    position: relative;
+    list-style-type: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    margin: 0;
+
+    &.highlight {
+      background: lighten($orange, 30%);
+    }
+  }
+
+  .timestamp {
+    @include position(absolute, 0 null null 0);
+    font-size: 12px;
+    line-height: 40px;
+    font-family: monospace;
+    font-weight: normal;
+    color: rgba($black, .5);
+    text-align: center;
+    width: $timestamp-width;
+  }
+
+  .username {
+    @extend %all-caps;
+    font-size: 16px;
+    line-height: 20px;
+    display: block;
+    margin: 0;
+  }
+
+  .bold {
+    color: $red;
+    font-weight: $bold;
+  }
+
+  .highlight .username { color: $orange; }
+}

@@ -1,0 +1,28 @@
+@import '../mixins/import';
+
+$base-font: 'Open Sans', sans-serif;
+$all-caps: 'Share', sans-serif;
+$logo-font: 'Libre Barcode 128 Text', sans-serif;
+$bold: 700;
+$normal: 300;
+
+%heading {
+  @include scale(font-size 18px 48px, line-height 18px 48px);
+  font-family: $all-caps;
+  text-transform: uppercase;
+  font-weight: $normal;
+}
+
+%base-text {
+  font-family: $base-font;
+  font-size: 18px;
+  font-weight: $normal;
+  line-height: 1.5;
+}
+
+%all-caps {
+  @include scale(font-size 16px 20px, line-height 22px 26px);
+  font-family: $all-caps;
+  text-transform: uppercase;
+  font-weight: normal;
+}

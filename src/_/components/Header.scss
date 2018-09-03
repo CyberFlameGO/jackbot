@@ -1,0 +1,33 @@
+@import '../sass/import';
+
+.Header {
+  @include position(fixed, 0 null null 0);
+  width: $sidebar-width;
+  text-align: center;
+  background: darken($white, 5%);
+
+  h1 {
+    font-size: 50px;
+    line-height: 80px;
+    text-transform: lowercase;
+    font-weight: normal;
+    font-family: $logo-font;
+    mix-blend-mode: soft-light;
+    color: $white;
+
+    &:hover {
+      mix-blend-mode: soft-light;
+    }
+  }
+
+  @include max-width(mobile) {
+    width: 100%;
+    z-index: 10;
+
+    h1 {
+      font-size: 30px;
+      line-height: 40px;
+      padding: 5px 0;
+    }
+  }
+}
