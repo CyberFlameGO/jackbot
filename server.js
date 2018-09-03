@@ -1,18 +1,20 @@
 const io = require('socket.io')()
 const _ = require('lodash')
 
-let users = [{
-  username: 'JackBot',
-  status: 'online',
-  timestamp: Date.now(),
-  type: 'bot'
-},
-{
-  username: 'HelpBot',
-  status: 'online',
-  timestamp: Date.now(),
-  type: 'bot'
-}], messages = []
+let users = [
+  {
+    username: 'JackBot',
+    status: 'online',
+    timestamp: Date.now(),
+    type: 'bot'
+  },
+  {
+    username: 'HelpBot',
+    status: 'online',
+    timestamp: Date.now(),
+    type: 'bot'
+  }
+], messages = []
 
 io.on('connection', (socket) => {
   socket.on('LOGIN', (username) => {

@@ -22,7 +22,11 @@
     &:focus {
       background: rgba(255, 255, 255, .5);
     }
-    &::placeholder { color: rgba($black, .3); }
+
+    &::placeholder {
+      content: 'asdfas';
+      color: rgba($black, .3);
+    }
   }
 
   @include max-width(mobile) {
