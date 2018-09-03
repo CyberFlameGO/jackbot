@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
 import ChatContainer from './chat/ChatContainer'
+import './App.scss'
 
 const App = () => (
   <div className="App">
@@ -11,4 +12,5 @@ const App = () => (
     </main>
   </div>
 )
+
 export default App

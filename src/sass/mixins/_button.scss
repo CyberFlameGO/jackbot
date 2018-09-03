@@ -1,5 +1,5 @@
 @mixin button($color: $black) {
-  @extend %all-caps;
+  @include all-caps;
   @include size(auto, 40px);
   font-size: 18px;
   line-height: 36px;

@@ -10,7 +10,7 @@ class Chat extends Component {
     if (this.props.authenticated) {
       return (
         <div>
-          <UserList users={this.props.users} game={this.props.game} />
+          <UserList users={this.props.users} />
           <Messages username={this.props.username} messages={this.props.messages} />
           <Input commandBot={this.props.commandBot} socket={this.props.socket} />
         </div>
@@ -21,7 +21,10 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    this.props.socket.on('LOGIN_SUCCESS', (data) => this.props.authenticate(data))
+    this.props.socket.on('LOGIN_SUCCESS', (data) => {
+      this.props.authenticate(data)
+      this.props.commandBot('/greet')
+    })
     this.props.socket.on('LOGIN_ERROR', (error) => alert(error))
     this.props.socket.on('USER_LOGIN', (user) => this.props.userLogin(user))
     this.props.socket.on('USER_LOGOUT', (username) => this.props.userLogout(username))

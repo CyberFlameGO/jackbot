@@ -1,8 +1,7 @@
 @import 'global';
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,700');
-@import url('https://fonts.googleapis.com/css?family=Share');
-@import url('https://fonts.googleapis.com/css?family=Libre+Barcode+128+Text');
+@import url('https://fonts.googleapis.com/css?family=Contrail+One|Fredoka+One|Open+Sans|Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Jaldi:700');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -58,10 +57,22 @@ html, body {
 }
 
 body {
-	@extend %base-text;
+	@include base-text;
 	max-width: 100%;
 	overflow-x: hidden;
-	background: darken($white, 5%);
+
+	&:before {
+		@include position(fixed, 0 null null 0);
+		@include size(200vw);
+		content: '';
+		background: radial-gradient($purple, $pink);
+	}
+}
+
+#gradient {
+	@include position(fixed, 0 0 0 0);
+	@include size(100%);
+	z-index: -1;
 }
 
 main {
@@ -89,10 +100,4 @@ ul, li {
 *:before,
 *:after {
 	box-sizing: border-box;
-}
-
-main * {
-	margin-bottom: modular-scale(0);
-
-	&:last-child { margin-bottom: 0; }
-}
+} 

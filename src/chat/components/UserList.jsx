@@ -1,35 +1,20 @@
 import React from 'react'
-import Blackjack from './Blackjack'
+import * as $ from '../../helpers/normalizers'
 import './UserList.scss'
 
-const UserList = ({
-  users,
-  game
-}) => {
-  const USERS = users.length === 1 ? 'user' : 'users'
-  const TIME = (timestamp) => {
-    let time = parseInt((Date.now() - timestamp) / 60000, 10)
-    if (time < 1) { time = 'less than a minute' }
-    if (time === 1) { time = '1 minute' }
-    if (time > 1) { time = `${time} minutes` }
-    return time
-  }
-
-  return (
-    <div className="UserList">
-      <h2>{users.length} {USERS} online now</h2>
-      <ul className="users">
-        {users.map((user, i) => {
-          return <li key={i} className={user.status}>
-            <span className="username">{user.username} <i>{user.type === 'bot' ? 'Bot' : null}</i></span>
-            <span className="status">Online for {TIME(user.timestamp)}</span>
-          </li>
-        })}
-      </ul>
-      
-      { game.playing && <Blackjack game={game} /> }
-    </div>
-  )
-}
+const UserList = ({ users }) => (
+  <div className="UserList">
+    <h1>JB</h1>
+    <h2>{$.pluralize(users.length, 'user')} online now</h2>
+    <ul className="users">
+      {users.map((user, i) => {
+        return <li key={i} className={user.status}>
+          <span className="username">{user.type === 'bot' ? '@' : null}{user.username} <i>{user.type === 'bot' ? 'Bot' : null}</i></span>
+          <span className="status">Online for {$.timeOnline(user.timestamp)}</span>
+        </li>
+      })}
+    </ul>
+  </div>
+)
 
 export default UserList 

@@ -8,15 +8,15 @@ import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { combineReducers } from 'redux'
 import chatReducer from './chat/reducer'
+import blackjackReducer from './blackjack/reducer'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import SocketContext from './socket-context'
 import * as io from 'socket.io-client'
-import './index.scss'
-
 
 const reducer = combineReducers({
-  chat: chatReducer
+  chat: chatReducer,
+  blackjack: blackjackReducer
 }) 
 const socket = io('http://0.0.0.0:3333')
 const history = createBrowserHistory()

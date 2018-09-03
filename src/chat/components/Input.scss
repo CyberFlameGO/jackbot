@@ -3,26 +3,33 @@
 .Input {
   @include position(absolute, null 0 0 $sidebar-width);
   padding: 0;
-  background: rgba(0, 0, 0, .2);
-  padding: 15px;
-  background: $red;
 
   input {
-    @extend %base-input;
-    color: $white;
+    @include base-input;
+    transition: all $base-duration linear;
+    color: $black;
     border: 0;
     width: 100%;
     font-size: 18px;
-    background: rgba(0, 0, 0, .1);
-    padding: 0 15px;
-    border-radius: 100px;
+    line-height: 40px;
+    padding: 10px 20px 10px 80px;
+    background: rgba(255, 255 ,255, .3);
 
-    &::placeholder { color: lighten($red, 10%); }
+    &:hover {
+      background: rgba(255, 255, 255, .1);
+    }
+
+    &:focus {
+      background: rgba(255, 255, 255, .5);
+    }
+    &::placeholder { color: rgba($black, .3); }
   }
 
   @include max-width(mobile) {
     left: 0;
+  }
 
-    input { padding: 10px; }
+  .text {
+    background: $white;
   }
 }

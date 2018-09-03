@@ -2,28 +2,32 @@
 
 .Login {
   @include clearfix;
-  @include position(fixed, 50% 0 null 0);
-  transform: translateY(-50%);
+  @include position(fixed, 0 0 0 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .container {
     width: 280px;
-    margin: 0 auto;
 
     @include min-width(mobile) {
       width: 600px;
     }
   }
-
+ 
   h1 {
-    @extend %heading;
-    @include scale(font-size 18px 28px);
-    margin: 0;
+    @include heading;
+    @include scale(
+      font-size 16px 28px,
+      line-height 26px 38px
+    );
+    margin: 0 0 modular-scale(1);
   }
-
+ 
   $button-width: 80px;
 
   input {
-    @extend %base-input;
+    @include base-input;
     width: calc(100% - #{$button-width});
     float: left;
   }

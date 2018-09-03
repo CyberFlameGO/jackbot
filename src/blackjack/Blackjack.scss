@@ -1,0 +1,173 @@
+@import 'global';
+
+.Blackjack {
+  height: 0;
+  overflow: hidden;
+  transition: height $base-transition;
+  padding: 0 15px;
+  background: $black;
+
+  @include min-width(tablet) {
+    padding-left: 80px;
+  }
+
+  .dealer, .player {
+    width: 50%;
+    float: left;
+    overflow: hidden;
+    margin: 0;
+    padding: 5px 0;
+
+    @include min-width(tablet) {
+      padding: 20px 0;
+    }
+  } 
+
+  h3 {
+    @include all-caps;
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 5px;
+    color: $white;
+
+    span {
+      font-size: .7em;
+      color: $pink;
+      display: block;
+    }
+
+    @include min-width(tablet) {
+      float: left;
+      margin-right: 15px;
+    }
+  }
+
+  .cards {
+    padding: 0;
+    position: relative;
+  }
+
+  .scene {
+    @include size(20px, 35px);
+    perspective: 200px;
+    float: left;
+    margin: 0 5px 0 0;
+    padding: 0;
+    list-style-type: none;
+
+    @include min-width(tablet) {
+      @include size(50px, 80px);
+      margin-right: 15px;
+    }
+  }
+
+  @keyframes flip {
+    0% {
+      transform: rotateY(180deg);
+    } 
+
+    100% {
+      transform: rotateY(0deg);
+    }
+  }
+
+  .card {
+    @include size(100%);
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+    overflow: visible;
+
+    &.visible {
+      animation: flip .3s linear;
+      animation-fill-mode: forwards;
+    }
+
+    div {
+      @include size(100%);
+      position: absolute;
+      backface-visibility: hidden;
+      border-radius: 4px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-evenly;
+
+      @include min-width(tablet) {
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .front {
+      background: $white;
+
+    }
+
+    .back {
+      background: radial-gradient($pink, lighten($black, 30%));
+      transform: rotateY(180deg);
+    }
+
+    .front {
+      @include all-caps;
+      font-size: 17px;
+      margin: 0;
+
+      &:before {
+        @include position(absolute, 0 auto auto 50%);
+        transform: translateX(-50%);
+      }
+
+      &:after { display: none; }
+      
+      @include min-width(tablet) {
+        font-size: 28px;
+
+        &:after { display: block; }
+      }
+
+      &:before, &:after {
+        font-size: 8px;
+
+        @include min-width(tablet) { font-size: 12px; }
+      }
+
+      &.♥, &.♥ {
+        color: $red;
+
+        &:before, &:after { content: '♥'; }
+      }
+
+      &.♦, &.♦ {
+        color: $red;
+
+        &:before, &:after { content: '♦'; }
+      }
+
+      &.♠:before, &.♠:after { content: '♠' }
+      &.♣:before, &.♣:after { content: '♣' }
+
+      @include min-width(tablet) {
+        &:before { @include position(absolute, 0px auto auto 3px); }
+        &:after  { @include position(absolute, auto 3px 0px auto); }
+
+        &:before, &:after { transform: none; }
+      }
+    }
+  }
+
+  @for $i from 1 through 5 {
+    .scene .card:nth-child($i) {
+      animation-delay: $i * .1s;
+    }
+  }
+}
+
+.game .Blackjack {
+  height: 70px;
+
+  @include min-width(tablet) {
+    height: 120px;
+  }
+}

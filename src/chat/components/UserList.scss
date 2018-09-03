@@ -2,45 +2,64 @@
 
 .UserList {
   @include position(absolute, 0 null 0 0);
-  @include pad(true);
   width: $sidebar-width;
+  background: rgba($black, .6);
+  color: $white;
+  z-index: 100;
+
+  h1 {
+    font-family: Pacifico;
+    font-size: 30px;
+    background: $pink;
+    @include size(80px);
+    line-height: 80px;
+    text-align: center;
+    border-radius: 100px;
+    margin: 30px auto;
+    text-transform: lowercase;
+  }
 
   h2 {
-    @extend %all-caps;
-    @include scale(font-size 14px 24px, line-height 20px 30px);
-    color: $red;
+    @include all-caps;
+    @include scale(font-size 14px 18px, line-height 14px 18px);
+    padding: $mobile-outer-padding;
   }
 
   ul {
     overflow-y: scroll;
+    padding: 0;
   }
 
   .users, li {
-    padding: 0;
     list-style-type: none;
   }
 
   .users li {
-    margin: 0;
-    padding: 10px 0 10px 30px;
+    padding-left: 50px;
+    padding-right: 20px;
     border-bottom: 1px solid rgba($black, .1);
     position: relative;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 
     &:last-child { border: 0; }
 
     i {
+      @include heading;
       font-style: normal;
       float: right;
       background: $black;
       color: $white;
       border-radius: 100px; 
       padding: 0 10px;
-      font-size: .7em;
-      line-height: 20px;
+      font-size: 10px;
+      line-height: 20px; 
+      letter-spacing: .1em;
+      background: $red;
     }
 
     &:before {
-      @include position(absolute, 13px null null 0);
+      @include position(absolute, 3px null null $mobile-outer-padding);
       @include size(14px);
       content: '';
       border-radius: 100%;
@@ -51,7 +70,7 @@
     }
 
     .username {
-      @extend %all-caps;
+      @include all-caps;
       display: block;
       font-size: 18px;
       line-height: 20px;
@@ -59,7 +78,6 @@
     }
 
     .status {
-      @extend %all-caps;
       display: block;
       font-size: .7em;
       line-height: .8;

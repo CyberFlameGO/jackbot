@@ -1,5 +1,5 @@
-%base-input {
-  @extend %base-text;
+@mixin base-input {
+  @include base-text;
   font-size: 16px;
   line-height: 38px;
   width: 100%;

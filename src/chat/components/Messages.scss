@@ -1,73 +1,80 @@
 @import 'global';
 
 .Messages {
-  @include position(absolute, 0 0 68px $sidebar-width);
+  @include position(absolute, 0 0 60px $sidebar-width);
   overflow: hidden;
   margin: 0;
-  background: $white; 
   user-select: none;
 
   @include max-width(mobile) {
     left: 0;
-    bottom: 50px; 
   }
 
-  &:before {
-    @include position(absolute, 0 0 0 0);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-    content: '';
-    z-index: 100; 
-  }
-
-  &:after {
-    @include position(absolute, 0 0 0 0);
-    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-    content: '';
-    z-index: 100; 
-  }
-  
-  ul {
+  .messages {
     @include position(absolute, null 0 0 0);
     padding: 0; 
   }
 
   $timestamp-width: 80px;
 
-  li {
-    @include padding(10px 5px 10px $timestamp-width);
+  @keyframes message {
+    0% {
+      background: rgba($black, .3);
+    }
+
+    100% {
+      background: transparent;
+    }
+  }
+
+  .message {
+    padding: 10px $mobile-outer-padding;
+    animation: message .5s linear;
+    animation-fill-mode: forwards;
     position: relative;
     list-style-type: none;
-    border-bottom: 1px solid rgba(0, 0, 0, .05);
     margin: 0;
+    padding-right: $mobile-outer-padding;
+    //border-top: 1px solid rgba(0, 0, 0, .1);
+    font-size: 16px;
+    line-height: 20px;
 
-    &.highlight {
-      background: lighten($orange, 30%);
+    @include min-width(mobile) {
+      @include padding(12px 5px 12px $timestamp-width);
+      font-size: 16px;
     }
   }
 
   .timestamp {
-    @include position(absolute, 0 null null 0);
     font-size: 12px;
-    line-height: 40px;
+    line-height: 20px;
     font-family: monospace;
     font-weight: normal;
     color: rgba($black, .5);
     text-align: center;
+    float: right;
     width: $timestamp-width;
+
+    @include min-width(mobile) {
+      @include position(absolute, 0 null null 0);
+      line-height: 40px;
+    }
   }
 
   .username {
-    @extend %all-caps;
-    font-size: 16px;
-    line-height: 20px;
+    @include all-caps;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 16px;;
     display: block;
     margin: 0;
+
+    @include min-width(mobile) {
+      font-size: 16px;
+    }
   }
 
-  .bold {
-    color: $red;
-    font-weight: $bold;
+  .highlight {
+    color: $white;
   }
-
-  .highlight .username { color: $orange; }
 }

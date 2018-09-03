@@ -4,19 +4,7 @@ const initialState = {
   authenticated: false,
   username: '',
   users: [],
-  messages: [],
-  game: {
-    playing: false,
-    deck: [],
-    dealer: {
-      hand: [],
-      score: 0
-    },
-    player: {
-      hand: [],
-      score: 0
-    }
-  }
+  messages: []
 }
 
 export default function chat(state = initialState, action) {
@@ -55,7 +43,17 @@ export default function chat(state = initialState, action) {
         messages: [...state.messages, action.payload]
       }
 
-    case '@@chat/BOT_SAYS':
+    case '@@chat/HELPBOT_SAYS':
+      return {
+        ...state,
+        messages: [...state.messages, {
+          username: 'HelpBot',
+          text: action.payload,
+          timestamp: Date.now()
+        }]
+      }
+
+    case '@@chat/JACKBOT_SAYS':
       return {
         ...state,
         messages: [...state.messages, {
@@ -64,56 +62,8 @@ export default function chat(state = initialState, action) {
           timestamp: Date.now()
         }]
       }
-
-    case '@@chat/START_GAME':
-      return {
-        ...state,
-        game: {
-          ...state.game,
-          playing: true,
-          deck: action.payload
-        }
-      }
-
-    case '@@chat/QUIT_GAME':
-      return {
-        ...state,
-        game: initialState.game
-      }
-
-    case '@@chat/HIT_DEALER':
-      var card = state.game.deck[0]
-      var hand = [...state.game.dealer.hand, card]
-
-      return {
-        ...state,
-        game: {
-          ...state.game,
-          deck: _.reject(state.game.deck, card),
-          dealer: {
-            hand,
-            score: hand.reduce((total, card) => total + card.value, 0)
-          }
-        }
-      }
-
-    case '@@chat/HIT_PLAYER':
-      card = state.game.deck[0]
-      hand = [...state.game.player.hand, card]
-
-      return {
-        ...state,
-        game: {
-          ...state.game,
-          deck: _.reject(state.game.deck, card),
-          player: {
-            hand,
-            score: hand.reduce((total, card) => total + card.value, 0)
-          }
-        }
-      }
-
+  
     default:
-      return state
+      return state 
   }
 }

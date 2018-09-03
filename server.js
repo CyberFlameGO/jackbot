@@ -6,6 +6,12 @@ let users = [{
   status: 'online',
   timestamp: Date.now(),
   type: 'bot'
+},
+{
+  username: 'HelpBot',
+  status: 'online',
+  timestamp: Date.now(),
+  type: 'bot'
 }], messages = []
 
 io.on('connection', (socket) => {
@@ -51,7 +57,12 @@ io.on('connection', (socket) => {
     }
 
     messages.push(userMessage)
-    socket.emit('NEW_MESSAGE', userMessage)
+    
+    socket.emit('NEW_MESSAGE', {
+      ...userMessage,
+      self: true
+    })
+
     socket.broadcast.emit('NEW_MESSAGE', userMessage)
   })
 })  

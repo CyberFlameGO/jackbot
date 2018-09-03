@@ -1,103 +1,69 @@
-import * as JackBot from './jackbot'
+import * as JackBot from '../bots/JackBot'
+import * as HelpBot from '../bots/HelpBot'
 
-function authenticate(data) {
+export function authenticate(data) {
   return { type: '@@chat/AUTHENTICATE', payload: data }
 }
 
-function newMessage(message) {
+export function newMessage(message) {
   return { type: '@@chat/NEW_MESSAGE', payload: message }
 }
 
-function userLogin(user) {
+export function userLogin(user) {
   return { type: '@@chat/USER_LOGIN', payload: user }
 }
 
-function userLogout(user) {
+export function userLogout(user) {
   return { type: '@@chat/USER_LOGOUT', payload: user }
 }
 
-function commandBot(command) {
+export function jackBotSays(message) {
+  return { type: '@@chat/JACKBOT_SAYS', payload: message }
+}
+
+export function helpBotSays(message) {
+  return { type: '@@chat/HELPBOT_SAYS', payload: message }
+}
+
+export function commandBot(command) {
   return (dispatch, getState) => {
-    const { chat } = getState()
-    const username = chat.username
-
     switch(command) {
-      case '/jackbot':
-        var response = JackBot.hello(username)
-        return dispatch(botSays(response))
-
-      case '/help':
-        response = JackBot.help(username)
-        return dispatch(botSays(response))
-
-      case '/blackjack':
-        if (!chat.game.playing) {
-          response = JackBot.startGame(username)
-          dispatch(startGame(JackBot.generateDeck()))
-          dispatch(hitDealer())
-          dispatch(hitDealer())
-          dispatch(hitPlayer())
-          dispatch(hitPlayer())
-          return dispatch(botSays(response))
-        } else {
-          response = JackBot.alreadyPlaying(username)
-          return dispatch(botSays(response))
-        }
-
-      case '/quit':
-        if (!chat.game.playing) {
-          response = JackBot.notPlaying(username)
-          dispatch(botSays(response))
-          break
-        } else {
-          response = JackBot.quitGame(username)
-          dispatch(quitGame())
-          dispatch(botSays(response))
-          break
-        }
-
-      case '/hit':
-        if (chat.game.playing) {
-          dispatch(hitPlayer())
-
-          if (chat.game.dealer.score <= 17) {
-            dispatch(hitDealer())
-          }
-        }
+      case '/greet':
+        HelpBot.greet(dispatch, getState)
         break
 
-      case '/hold':
-        if (chat.game.playing) {
-          if (chat.game.dealer.score < 17) {
-            dispatch(hitDealer())
-          }
-        }
+      case '/help':
+        HelpBot.help(dispatch, getState)
+        break
+
+      case '/p':
+        JackBot.play(dispatch, getState)
+        break
+
+      case '/q':
+        JackBot.quit(dispatch, getState)
+        break
+
+      case '/h':
+        JackBot.hit(dispatch, getState)
+        break 
+
+      case '/s':
+        JackBot.stand(dispatch, getState)
+        break
+
+      case '/y':
+        JackBot.yes(dispatch, getState)
+        break
+
+      case '/n':
+        JackBot.no(dispatch, getState)
         break
 
       default:
-        return
+        break
     }
   }
-}
-
-function botSays(message) {
-  return { type: '@@chat/BOT_SAYS', payload: message }
-}
-
-function startGame(deck) {
-  return { type: '@@chat/START_GAME', payload: deck }
-}
-
-function quitGame() {
-  return { type: '@@chat/QUIT_GAME' }
-}
-
-function hitDealer() {
-  return { type: '@@chat/HIT_DEALER' }
-}
-
-function hitPlayer() {
-  return { type: '@@chat/HIT_PLAYER' }
 }
 
 export default {
@@ -105,10 +71,7 @@ export default {
   newMessage,
   userLogin,
   userLogout,
-  botSays,
   commandBot,
-  startGame,
-  quitGame,
-  hitDealer,
-  hitPlayer
+  helpBotSays,
+  jackBotSays
 }
