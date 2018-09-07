@@ -5,11 +5,9 @@ import './App.scss'
 
 const App = () => (
   <div className="App">
-    <main>
-      <Switch>
-        <Route exact path="/" component={ChatContainer} />
-      </Switch>
-    </main>
+    <Switch>
+      <Route exact path="/" component={ChatContainer} />
+    </Switch>
   </div>
 )
 

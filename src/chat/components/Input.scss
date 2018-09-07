@@ -1,7 +1,7 @@
 @import 'global';
 
 .Input {
-  @include position(absolute, null 0 0 $sidebar-width);
+  @include position(absolute, null 0 0 0);
   padding: 0;
 
   input {
@@ -12,28 +12,21 @@
     width: 100%;
     font-size: 18px;
     line-height: 40px;
-    padding: 10px 20px 10px 80px;
-    background: rgba(255, 255 ,255, .3);
+    padding: 10px 20px;
+    background: rgba(255, 255 ,255, .4);
 
     &:hover {
-      background: rgba(255, 255, 255, .1);
+      background: rgba(255, 255, 255, .2);
     }
 
     &:focus {
-      background: rgba(255, 255, 255, .5);
+      background: rgba(255, 255, 255, .6);
     }
 
-    &::placeholder {
-      content: 'asdfas';
-      color: rgba($black, .3);
+    &::placeholder { color: rgba($black, .3); }
+
+    @include min-width(mobile) {
+      padding-left: 80px;
     }
-  }
-
-  @include max-width(mobile) {
-    left: 0;
-  }
-
-  .text {
-    background: $white;
   }
 }

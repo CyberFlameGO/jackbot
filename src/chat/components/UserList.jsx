@@ -2,8 +2,8 @@ import React from 'react'
 import * as $ from '../../helpers/normalizers'
 import './UserList.scss'
 
-const UserList = ({ users }) => (
-  <div className="UserList">
+const UserList = ({ menuOpen, users }) => (
+  <div className={menuOpen ? "UserList open" : "UserList"}>
     <h1>JB</h1>
     <h2>{$.pluralize(users.length, 'user')} online now</h2>
     <ul className="users">

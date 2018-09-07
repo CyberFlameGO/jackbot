@@ -6,7 +6,7 @@
 }
 
 .Card {
-  @include size(20px, 35px);
+  @include size(30px, 50px);
   perspective: 200px;
   float: left;
   margin: 0 5px 0 0;
@@ -55,7 +55,34 @@
     transform: rotateY(180deg);
   }
 
-  &.♥, &.♦ {
-    color: $red;
+  .suit {
+    font-style: normal;
+    font-size: 18px;
   }
+
+  .face {
+    font-size: 22px;
+
+    @include max-width(tablet) {
+      font-size: 20px;
+    }
+  }
+  
+  .suit.top {
+    @include position(absolute, 2px null null 2px);
+
+    @include max-width(tablet) {
+      font-size: 12px;
+    }
+  }
+
+  .suit.bottom {
+    @include position(absolute, null 2px 2px null);
+
+    @include max-width(tablet) {
+      display: none;
+    }
+  }
+
+  &.♥, &.♦ { color: $red; }
 }

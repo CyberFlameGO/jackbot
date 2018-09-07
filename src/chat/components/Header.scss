@@ -1,0 +1,57 @@
+@import 'global';
+
+.Header {
+  @include position(absolute, 0 0 null 0);
+  z-index: 500;
+
+  button {
+    @include size(50px);
+    @include position(fixed, 20px 20px null null);
+    transition: all $base-transition;
+    background: transparent;
+    border: 0;
+    background: rgba($black, .6);
+    border-radius: 100%;
+    
+    @include min-width(tablet-sm) { display: none; }
+
+    &:before, &:after, span:before, span:after {
+      content: '';
+      height: 2px;
+      display: block;
+      background: $white;
+      transition: all $base-transition;
+    }
+
+    &:before {
+      @include position(absolute, 30% null null 20%);
+      transform-origin: top left;
+      width: 60%;
+    }
+
+    &:after {
+      @include position(absolute, null null 30% 20%);
+      transform-origin: bottom right;
+      width: 60%;
+    }
+
+    span:before, span:after {
+      @include position(absolute, 50% null null 20%);
+      transform: translateY(-50%);
+      width: 60%;
+    }
+
+    &:focus, &:active { outline: 0; }
+  }
+
+  button.open {
+    background: $purple;
+
+    &:before, &:after { background: transparent; }
+
+    span:before, span:after { background: $white; }
+
+    span:before { transform: rotate(45deg); }
+    span:after  { transform: rotate(-45deg); }
+  }
+}

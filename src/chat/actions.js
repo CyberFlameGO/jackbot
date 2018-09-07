@@ -9,6 +9,10 @@ export function newMessage(message) {
   return { type: '@@chat/NEW_MESSAGE', payload: message }
 }
 
+export function toggleMenu() {
+  return { type: '@@chat/TOGGLE_MENU' }
+}
+
 export function userLogin(user) {
   return { type: '@@chat/USER_LOGIN', payload: user }
 }
@@ -36,27 +40,31 @@ export function commandBot(command) {
         HelpBot.help(dispatch, getState)
         break
 
-      case '/p':
+      case '/jackbot':
+        JackBot.greet(dispatch, getState)
+        break
+
+      case '/play':
         JackBot.play(dispatch, getState)
         break
 
-      case '/q':
+      case '/quit':
         JackBot.quit(dispatch, getState)
         break
 
-      case '/h':
+      case '/hit':
         JackBot.hit(dispatch, getState)
         break 
 
-      case '/s':
+      case '/stand':
         JackBot.stand(dispatch, getState)
         break
 
-      case '/y':
+      case '/yes':
         JackBot.yes(dispatch, getState)
         break
 
-      case '/n':
+      case '/no':
         JackBot.no(dispatch, getState)
         break
 
@@ -69,6 +77,7 @@ export function commandBot(command) {
 export default {
   authenticate,
   newMessage,
+  toggleMenu,
   userLogin,
   userLogout,
   commandBot,

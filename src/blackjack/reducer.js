@@ -19,10 +19,11 @@ const initialState = {
 export default function blackjackReducer(state = initialState, action) {
   switch (action.type) {
     case '@@blackjack/START_GAME':
-      return Object.assign({}, initialState, {
+      return {
+        ...initialState,
         playing: true,
         deck: action.payload
-      })
+      }
 
     case '@@blackjack/QUIT_GAME':
       return {

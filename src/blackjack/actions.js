@@ -11,7 +11,7 @@ export function hitDealer(visible = true) {
 }
 
 export function hitPlayer(visible = true) {
-  return { type: '@@chat/HIT_PLAYER', payload: visible }
+  return { type: '@@blackjack/HIT_PLAYER', payload: visible }
 }
 
 export function playerStands() {

@@ -1,0 +1,40 @@
+@import 'global';
+
+.Chat {
+  aside, section {
+    float: left;
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  aside {
+    width: 25%;
+
+    &.hidden { width: 0; }
+
+    @include max-width(tablet-sm) {
+      width: 0;
+    }
+  }
+  
+  section {
+    width: 50%;
+
+    &.full { width: 75%; }
+
+    @include max-width(tablet-sm) {
+      width: 100%;
+
+      &.full { width: 100%; }
+    }
+  }
+
+  .game {
+    @include max-width(tablet-sm) {
+      @include position(fixed, 0 0 null 0);
+      min-height: auto;
+      height: auto;
+      width: 100%;
+    }
+  }
+}

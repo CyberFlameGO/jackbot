@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Blackjack from './Blackjack'
+import BlackjackComponent from './BlackjackComponent'
 import actions from './actions'
 
 const mapStateToProps = (state) => {
@@ -8,6 +8,8 @@ const mapStateToProps = (state) => {
     again,
     win,
     standing,
+    player,
+    dealer
   } = state.blackjack
 
   const {
@@ -19,7 +21,9 @@ const mapStateToProps = (state) => {
     again,
     win,
     standing,
-    username
+    username,
+    player,
+    dealer
   }
 }
 
@@ -50,6 +54,6 @@ const mapDispatchToProps = (dispatch) => {
 const BlackjackContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Blackjack)
+)(BlackjackComponent)
 
 export default BlackjackContainer

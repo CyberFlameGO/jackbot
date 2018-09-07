@@ -11,7 +11,7 @@ export function hello(username) {
 
 export function startGame(username) {
   const responses = [
-    `HIT: /h STAND: /s`
+    `/hit • /stand`
   ]
 
   return responses[Math.floor(Math.random() * (responses.length - 1))]
@@ -32,7 +32,7 @@ export function quitGame(username) {
 
 export function youLose(username) {
   const responses = [
-    `YOU LOSE • Play again? /yes /no`
+    `YOU LOSE! Play again? /yes • /no`
   ] 
 
   return responses[Math.floor(Math.random() * (responses.length - 1))]
@@ -40,12 +40,12 @@ export function youLose(username) {
 
 export function youWin(username) {
   const responses = [
-    `YOU WIN • ...and I let you, obviously. Play again? /yes /no`,
-    `YOU WIN • I bet you think you're hot stuff. Play again? /yes /no`,
-    `YOU WIN • I demand a recount. Play again? /yes /no`,
-    `YOU WIN • I'm going to remember this. Play again? /yes /no`,
-    `YOU WIN • Play again? /yes /no`,
-    `YOU WIN • What did you expect, confetti? Play again? /yes /no`
+    `YOU WIN! ...and I let you, obviously. Play again? /yes • /no`,
+    `YOU WIN! I bet you think you're hot stuff. Play again? /yes • /no`,
+    `YOU WIN! I demand a recount. Play again? /yes • /no`,
+    `YOU WIN! I'm going to remember this. Play again? /yes • /no`,
+    `YOU WIN! Play again? /yes • /no`,
+    `YOU WIN! What did you expect, confetti? Play again? /yes • /no`
   ]
 
   return responses[Math.floor(Math.random() * (responses.length - 1))]
@@ -53,7 +53,7 @@ export function youWin(username) {
 
 export function tiedGame(username) {
   const responses = [
-    `IT'S A TIE • Play again? /yes /no`
+    `IT'S A TIE! Play again? /yes • /no`
   ] 
 
   return responses[Math.floor(Math.random() * (responses.length - 1))]
@@ -231,4 +231,11 @@ export function no(dispatch, getState) {
     dispatch(BlackjackActions.quitGame())
     dispatch(ChatActions.jackBotSays(response))
   }
+}
+
+export function greet(dispatch, getState) {
+  const { chat } = getState()
+  const username = chat.username
+  const response = hello(username)
+  return dispatch(ChatActions.jackBotSays(response))
 }

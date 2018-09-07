@@ -1,12 +1,13 @@
 import React from 'react'
+import './Card.scss'
 
-const Card = ({ suit, face }) => (
-  <div className={suit + ' Card'}>
-    <div className="container">
+const Card = ({ card }) => (
+  <div className={card.suit + ' Card'}>
+    <div className={card.visible ? 'container visible' : 'container'}>
       <div className="front">
-        <i className="suit top">{suit}</i>
-        <span className="face">{face}</span>
-        <i className="suit bottom">{suit}</i>
+        <i className="suit top">{card.suit}</i>
+        <span className="face">{card.face}</span>
+        <i className="suit bottom">{card.suit}</i>
       </div>
       <div className="back"></div>
     </div>

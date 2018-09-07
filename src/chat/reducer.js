@@ -2,6 +2,7 @@ import _ from 'lodash'
 
 const initialState = {
   authenticated: false,
+  menuOpen: false,
   username: '',
   users: [],
   messages: []
@@ -25,6 +26,12 @@ export default function chat(state = initialState, action) {
           text: `${action.payload.username} has logged in.`,
           timestamp: Date.now()
         }]
+      }
+
+    case '@@chat/TOGGLE_MENU':
+      return {
+        ...state,
+        menuOpen: !state.menuOpen
       }
 
     case '@@chat/USER_LOGOUT':

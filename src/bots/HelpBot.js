@@ -2,7 +2,7 @@ import { helpBotSays } from '../chat/actions'
 
 export function greetings(username) {
   const responses = [
-    `Hi @${username}! You seem lost – type /help for some guidance.`
+    `Hi @${username}! Type /help for some guidance (or /jackbot for the other guy).`
   ]
 
   return responses[Math.floor(Math.random() * (responses.length - 1))]

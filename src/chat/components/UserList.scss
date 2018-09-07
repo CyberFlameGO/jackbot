@@ -1,31 +1,53 @@
 @import 'global';
 
 .UserList {
-  @include position(absolute, 0 null 0 0);
-  width: $sidebar-width;
-  background: rgba($black, .6);
+  @include position(fixed, 0 0 0 0);
+  background: rgba($black, .9);
+  transform: translateX(-100%);
   color: $white;
   z-index: 100;
+  transition: all $base-transition;
+  width: 100%;
+  
+  &.open { transform: translateX(0%); }
+
+  @include min-width(tablet-sm) {
+    @include position(absolute, 0 0 0 0);
+    transform: none;
+    background: linear-gradient(to bottom, transparent, rgba($black, .2));
+  }
 
   h1 {
+    @include size(50px);
     font-family: Pacifico;
-    font-size: 30px;
-    background: $pink;
-    @include size(80px);
-    line-height: 80px;
+    font-size: 20px;
+    background: $blue;
+    line-height: 50px;
     text-align: center;
     border-radius: 100px;
     margin: 30px auto;
     text-transform: lowercase;
+    float: left;
+    margin: 20px 0 0 20px;
+
+    @include min-width(mobile) {
+      @include size(80px);
+      line-height: 80px;
+      font-size: 30px;
+      margin: 20px auto;
+      float: none;
+    }
   }
 
   h2 {
     @include all-caps;
     @include scale(font-size 14px 18px, line-height 14px 18px);
     padding: $mobile-outer-padding;
+    clear: both;
   }
 
   ul {
+    @include clearfix;
     overflow-y: scroll;
     padding: 0;
   }

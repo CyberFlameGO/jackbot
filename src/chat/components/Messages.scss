@@ -1,14 +1,10 @@
 @import 'global';
 
 .Messages {
-  @include position(absolute, 0 0 60px $sidebar-width);
+  @include position(absolute, 0 0 60px 0);
   overflow: hidden;
   margin: 0;
   user-select: none;
-
-  @include max-width(mobile) {
-    left: 0;
-  }
 
   .messages {
     @include position(absolute, null 0 0 0);
@@ -18,13 +14,8 @@
   $timestamp-width: 80px;
 
   @keyframes message {
-    0% {
-      background: rgba($black, .3);
-    }
-
-    100% {
-      background: transparent;
-    }
+    0% { background: rgba($black, .3); }
+    100% { background: transparent; }
   }
 
   .message {

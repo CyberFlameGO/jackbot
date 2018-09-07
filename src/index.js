@@ -18,7 +18,8 @@ const reducer = combineReducers({
   chat: chatReducer,
   blackjack: blackjackReducer
 }) 
-const socket = io('localhost:3333')
+
+const socket = io('http://localhost:3333')
 const history = createBrowserHistory()
 
 const store = createStore(

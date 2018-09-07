@@ -65,18 +65,8 @@ body {
 		@include position(fixed, 0 null null 0);
 		@include size(200vw);
 		content: '';
-		background: radial-gradient($purple, $pink);
+		background: radial-gradient($purple, $blue);
 	}
-}
-
-#gradient {
-	@include position(fixed, 0 0 0 0);
-	@include size(100%);
-	z-index: -1;
-}
-
-main {
-	@include position(fixed, 0 0 0 0);
 }
 
 a {

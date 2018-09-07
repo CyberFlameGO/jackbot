@@ -1,19 +1,33 @@
 import React, { Component } from 'react'
-import Login from './components/Login';
+import Header from './components/Header'
+import Login from './components/Login'
 import UserList from './components/UserList'
 import Messages from './components/Messages'
 import Input from './components/Input'
-import SocketContext from '../socket-context';
+import SocketContext from '../socket-context'
+import Blackjack from '../blackjack/BlackjackContainer';
+import './Chat.scss'
 
 class Chat extends Component {
   render() {
     if (this.props.authenticated) {
       return (
-        <div>
-          <UserList users={this.props.users} />
-          <Messages username={this.props.username} messages={this.props.messages} />
-          <Input commandBot={this.props.commandBot} socket={this.props.socket} />
-        </div>
+        <main className="Chat">
+          <Header menuOpen={this.props.menuOpen} toggleMenu={this.props.toggleMenu} />
+          
+          <aside>
+            <UserList menuOpen={this.props.menuOpen} users={this.props.users} />
+          </aside>
+
+          <section className={!this.props.playing ? 'full' : null}>
+            <Messages username={this.props.username} messages={this.props.messages} />
+            <Input commandBot={this.props.commandBot} socket={this.props.socket} />
+          </section>
+          
+          {this.props.playing && <aside className="game">
+            <Blackjack /> 
+          </aside> }
+        </main>
       )
     }
   
